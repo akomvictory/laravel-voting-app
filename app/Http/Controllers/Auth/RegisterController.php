@@ -67,6 +67,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+           
+           /* 'avatar' => 'facebook_avatar_gif',
+            'facebook_profile' => 'facebook_profile_photo',
+            'gender' => 'female',
+            'role_ids' => '4',
+
+            */
+
         ]);
     }
 }

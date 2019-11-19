@@ -3,13 +3,24 @@
         <thead>
             <tr>
                 <th>Name</th>
+                 @if(Auth::user()->role_ids <3 )
                 <th colspan="3">Action</th>
+                @endif
             </tr>
         </thead>
         <tbody>
         @foreach($categories as $category)
             <tr>
-                <td>{!! $category->name !!}</td>
+                <td>
+             <a href="{!! route('categories.show', [$category->id]) !!}" class='btn btn-default'>
+                 
+                    {!! $category->name !!}
+             </a>
+
+                </td>
+
+                 @if(Auth::user()->role_ids <3 )
+
                 <td>
                     {!! Form::open(['route' => ['categories.destroy', $category->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -19,6 +30,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
+                @endif
             </tr>
         @endforeach
         </tbody>

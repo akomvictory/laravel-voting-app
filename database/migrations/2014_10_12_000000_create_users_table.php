@@ -18,6 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('avatar')->default('facebook_avatar_gif');
+            $table->string('facebook_profile')->default('facebook_profile_photo');
+            $table->string('gender')->default('Female');
+            $table->integer('role_ids')->default(4);
             $table->rememberToken();
 
             $table->softDeletes();

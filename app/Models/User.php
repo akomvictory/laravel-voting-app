@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+
 /**
  * Class User
  * @package App\Models
@@ -46,6 +48,10 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'password' => 'string',
+        'avatar' => 'string',
+        'facebook_profile' => 'string',
+        'gender' => 'string',
+        'role_ids' => 'integer',
         'remember_token' => 'string'
     ];
 
@@ -59,6 +65,11 @@ class User extends Model
         'email' => 'required',
         'password' => 'required'
     ];
+
+    public function role(){
+
+        return $this->belongsTo('App\Models\Role');
+    }
 
     
 }

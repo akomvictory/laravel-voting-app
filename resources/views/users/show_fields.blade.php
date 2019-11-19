@@ -1,48 +1,62 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $user->id !!}</p>
-</div>
 
-<!-- Name Field -->
-<div class="form-group">
-    {!! Form::label('name', 'Name:') !!}
-    <p>{!! $user->name !!}</p>
-</div>
 
-<!-- Email Field -->
-<div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
-    <p>{!! $user->email !!}</p>
-</div>
+<div class="col-md-12">
+          <!-- Widget: user widget style 1 -->
+          <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-aqua-active">
+              <h3 class="widget-user-username">{!! $user->name !!}</h3>
+              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Avatar">
+            </div>
+            <div class="box-footer">
 
-<!-- Password Field -->
-<div class="form-group">
-    {!! Form::label('password', 'Password:') !!}
-    <p>{!! $user->password !!}</p>
-</div>
+          <div class="col-md-4">
+                    <!-- Widget: user widget style 1 -->
+                    <div class="box box-widget widget-user-2">
+                      <!-- Add the bg color to the header using any of the bg-* classes -->
+                      <div class="widget-user-header bg-yellow">
+                        <div class="widget-user-image">
+                          <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                        </div>
+                        <!-- /.widget-user-image -->
+                        <h3 class="widget-user-username">{!! $user->name !!}</h3>
+                        <h5 class="widget-user-desc">Lead Developer</h5>
+                      </div>
+                      <div class="box-footer no-padding">
+                        <ul class="nav nav-stacked">
+                          <li><a href="#">{!! $user->email !!} <span class="pull-right badge bg-blue">Email</span></a></li>
+                          <li><a href="#">Role<span class="pull-right badge bg-aqua">{!! $user->role['id'] !!}</span></a></li>
+                          <li><a href="#">Facebook <span class="pull-right badge bg-green">{!! $user->facebook_profile !!}</span></a></li>
+                          <li><a href="#">Joined <span class="pull-right badge bg-red">{!! $user->created_at->format('D, M, Y') !!}</span></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- /.widget-user -->
+                  </div>
 
-<!-- Remember Token Field -->
-<div class="form-group">
-    {!! Form::label('remember_token', 'Remember Token:') !!}
-    <p>{!! $user->remember_token !!}</p>
-</div>
 
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $user->deleted_at !!}</p>
-</div>
+           
+              <!-- /.row -->
+            </div>
+          </div>
+          <!-- /.widget-user -->
+        </div>
 
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $user->created_at !!}</p>
-</div>
 
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $user->updated_at !!}</p>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
