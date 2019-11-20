@@ -1,14 +1,20 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
+    {!! Form::label('name', 'Full Name:') !!}
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Gender Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('gender', 'Gender:') !!}
-    {!! Form::text('gender', null, ['class' => 'form-control']) !!}
-</div>
+
+                     <div class="form-group col-sm-6">
+                    <label> Gender</label>
+                    <select class="form-control" name="gender">
+
+                      <option value="female">Female</option>
+                       <option value="male">Male</option>
+                      
+                    </select>
+
+                    </div>
 
 <!-- Linkedin Url Field -->
 <div class="form-group col-sm-6">
@@ -34,13 +40,12 @@
     {!! Form::text('reason_for_nomination', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- No Of Nominations Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('no_of_nominations', 'No Of Nominations:') !!}
-    {!! Form::number('no_of_nominations', null, ['class' => 'form-control']) !!}
-</div>
 
+
+
+<!--  / Start Only Admin AndModerator Get to See This  -->
 <!-- Is Admin Selected Field -->
+@if(Auth::user()->role_ids <3)
 <div class="form-group col-sm-6">
     {!! Form::label('is_admin_selected', 'Is Admin Selected:') !!}
     <label class="checkbox-inline">
@@ -59,21 +64,31 @@
     </label>
 </div>
 
+@endif
 
-<!-- User Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('user_id', 'User Id:') !!}
-    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
-</div>
+<!--  / Start Only Admin AndModerator Get to See This  -->
+
+
+
 
 <!-- Category Id Field -->
+
+@if(isset($category->id))
 <div class="form-group col-sm-6">
-    {!! Form::label('category_id', 'Category Id:') !!}
+   
+    {!! Form::hidden('category_id', $category->id, ['class' => 'form-control']) !!}
+</div>
+
+@else
+<div class="form-group col-sm-6">
+   
     {!! Form::number('category_id', null, ['class' => 'form-control']) !!}
 </div>
+
+@endif
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('nominations.index') !!}" class="btn btn-default">Cancel</a>
+    
 </div>

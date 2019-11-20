@@ -8,6 +8,9 @@ use App\Repositories\NominationRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Auth;
+use App\Models\Nomination;
+use App\Models\NominationUser;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
@@ -55,13 +58,50 @@ class NominationController extends AppBaseController
      */
     public function store(CreateNominationRequest $request)
     {
+ 
+
         $input = $request->all();
 
-        $nomination = $this->nominationRepository->create($input);
+        $input['user_id'] = Auth::user()->id;
+ 
+        $noNominationCheck = Nomination::where('name', $request->input('name'))->first();
 
-        Flash::success('Nomination saved successfully.');
+        if($noNominationCheck){
 
-        return redirect(route('nominations.index'));
+            if($noNominationCheck['user_id'] != Auth::user()->id){
+
+          $no_of_nominations =  $noNominationCheck['no_of_nominations'];
+
+          $input['no_of_nominations'] = $no_of_nominations + 1;
+
+        $this->nominationRepository->update(['no_of_nominations' => $input['no_of_nominations']], $noNominationCheck['id']);
+
+                NominationUser::create([
+                 'user_id' => Auth::user()->id,
+                 'category_id' => $request->input('category_id'),
+                 'nomination_id' => $noNominationCheck['id'] 
+                       ]);
+
+            }
+        
+        }else{
+
+            $input['no_of_nominations'] = 0;
+            $nomination = $this->nominationRepository->create($input);
+
+              NominationUser::create([
+                 'user_id' => Auth::user()->id,
+                 'category_id' => $request->input('category_id'),
+                 'nomination_id' => $nomination->id
+                       ]);
+        }
+        
+
+        
+
+        Flash::success('Nomination submitted successfully.');
+
+      return redirect()->back();
     }
 
     /**
